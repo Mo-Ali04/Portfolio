@@ -1,0 +1,20 @@
+/* Import Bootstrap first */
+@import 'bootstrap/dist/css/bootstrap.min.css';
+@import 'bootstrap-icons/font/bootstrap-icons.css';
+
+/* Import AOS animations */
+@import 'aos/dist/aos.css';
+
+/* Import GLightbox */
+@import 'glightbox/dist/css/glightbox.min.css';
+
+/* Import Swiper */
+@import 'swiper/css';
+@import 'swiper/css/pagination';
+@import 'swiper/css/navigation';
+
+/* Import modern clean styles (replaces main.css) */
+@import './styles/modern.css';
+
+/* Import enhanced animations and hover effects */
+@import './styles/enhancements.css';

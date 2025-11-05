@@ -1,0 +1,628 @@
+/* ============================================
+   MODERN REACT PORTFOLIO STYLES
+   Replaces main.css with clean, maintainable CSS
+   ============================================ */
+
+/* ============================================
+   CSS VARIABLES
+   ============================================ */
+:root {
+  --primary-color: #149ddd;
+  --dark-bg: #040b14;
+  --dark-surface: #151f2b;
+  --light-bg: #f4fafd;
+  --text-dark: #272829;
+  --text-light: #ffffff;
+  --heading-color: #050d18;
+  --nav-color: #a8a9b4;
+  --transition: all 0.3s ease;
+}
+
+/* ============================================
+   GLOBAL STYLES
+   ============================================ */
+body {
+  font-family: 'Roboto', system-ui, -apple-system, sans-serif;
+  color: var(--text-dark);
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 700;
+  color: var(--heading-color);
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+a:hover {
+  color: #0d7ab8;
+}
+
+/* ============================================
+   SECTION STYLES
+   ============================================ */
+.section {
+  padding: 80px 0;
+  overflow: hidden;
+}
+
+.section-title {
+  text-align: center;
+  padding-bottom: 40px;
+}
+
+.section-title h2 {
+  font-size: 32px;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  position: relative;
+}
+
+.section-title h2::after {
+  content: '';
+  position: absolute;
+  display: block;
+  width: 50px;
+  height: 3px;
+  background: var(--primary-color);
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.section-title p {
+  margin-bottom: 0;
+  color: #6c757d;
+}
+
+/* ============================================
+   HEADER / SIDEBAR
+   ============================================ */
+#header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 300px;
+  transition: var(--transition);
+  z-index: 9997;
+  background: var(--dark-bg);
+  overflow-y: auto;
+  padding: 0 15px;
+}
+
+#header .profile-img {
+  margin: 15px auto;
+  display: block;
+  border: 8px solid #2c2f3f;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+#header .profile-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#header .logo {
+  margin-top: 20px;
+}
+
+#header .logo h1 {
+  font-size: 24px;
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+  font-weight: 700;
+  color: var(--text-light);
+}
+
+#header .social-links {
+  margin: 30px 0;
+}
+
+#header .social-links a {
+  font-size: 18px;
+  display: inline-block;
+  background: var(--dark-surface);
+  color: var(--text-light);
+  line-height: 1;
+  padding: 8px 0;
+  margin-right: 4px;
+  border-radius: 50%;
+  text-align: center;
+  width: 36px;
+  height: 36px;
+  transition: var(--transition);
+}
+
+#header .social-links a:hover {
+  background: var(--primary-color);
+  color: var(--text-light);
+}
+
+/* Navigation Menu */
+.navmenu {
+  padding: 30px 0;
+}
+
+.navmenu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.navmenu li {
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.navmenu a {
+  display: flex;
+  align-items: center;
+  color: var(--nav-color);
+  padding: 10px 18px;
+  margin-bottom: 8px;
+  transition: var(--transition);
+  font-size: 15px;
+  border-radius: 50px;
+}
+
+.navmenu a:hover,
+.navmenu a.active {
+  color: var(--text-light);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.navmenu a i {
+  font-size: 20px;
+  margin-right: 10px;
+}
+
+/* Header Toggle (Mobile) */
+.header-toggle {
+  color: var(--text-light);
+  font-size: 28px;
+  cursor: pointer;
+  display: none;
+  line-height: 0;
+  transition: var(--transition);
+  position: fixed;
+  right: 15px;
+  top: 15px;
+  z-index: 9998;
+}
+
+/* ============================================
+   MAIN CONTENT
+   ============================================ */
+.main {
+  margin-left: 300px;
+}
+
+/* ============================================
+   PRELOADER
+   ============================================ */
+#preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  overflow: hidden;
+  background: var(--dark-bg);
+  transition: all 0.6s ease-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#preloader:before {
+  content: "";
+  position: fixed;
+  top: calc(50% - 30px);
+  left: calc(50% - 30px);
+  border: 6px solid var(--primary-color);
+  border-top-color: var(--dark-bg);
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ============================================
+   SCROLL TO TOP BUTTON
+   ============================================ */
+.scroll-top {
+  position: fixed;
+  visibility: hidden;
+  opacity: 0;
+  right: 15px;
+  bottom: 15px;
+  z-index: 99999;
+  background: var(--primary-color);
+  width: 44px;
+  height: 44px;
+  border-radius: 50px;
+  transition: all 0.4s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-light);
+}
+
+.scroll-top:hover {
+  background: #0d7ab8;
+  color: var(--text-light);
+}
+
+.scroll-top.active {
+  visibility: visible;
+  opacity: 1;
+}
+
+.scroll-top i {
+  font-size: 24px;
+  line-height: 0;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+#footer {
+  background: var(--light-bg);
+  color: var(--text-dark);
+  font-size: 14px;
+  text-align: center;
+  padding: 30px 0;
+}
+
+#footer .copyright {
+  margin-bottom: 5px;
+}
+
+#footer .credits {
+  font-size: 13px;
+}
+
+#footer .credits a {
+  color: var(--primary-color);
+}
+
+/* ============================================
+   SKILLS SECTION
+   ============================================ */
+.skills .progress {
+  height: 60px;
+  display: block;
+  background: none;
+  border-radius: 0;
+}
+
+.skills .progress .skill {
+  padding: 10px 0;
+  margin: 0;
+  text-transform: uppercase;
+  display: block;
+  font-weight: 600;
+  font-family: "Poppins", sans-serif;
+  color: var(--heading-color);
+}
+
+.skills .progress .skill .val {
+  float: right;
+  font-style: normal;
+}
+
+.skills .progress-bar-wrap {
+  background: rgba(20, 157, 221, 0.15);
+  height: 10px;
+  border-radius: 10px;
+}
+
+.skills .progress-bar {
+  width: 0;
+  height: 10px;
+  transition: width 1.5s ease;
+  background: linear-gradient(90deg, var(--primary-color), #1ab8ff);
+  border-radius: 10px;
+}
+
+/* ============================================
+   RESUME SECTION
+   ============================================ */
+.resume .resume-title {
+  font-size: 26px;
+  font-weight: 700;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  color: var(--heading-color);
+}
+
+.resume .resume-item {
+  padding: 0 0 20px 20px;
+  margin-top: -2px;
+  border-left: 2px solid var(--primary-color);
+  position: relative;
+}
+
+.resume .resume-item h4 {
+  line-height: 18px;
+  font-size: 18px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--primary-color);
+  margin-bottom: 10px;
+}
+
+.resume .resume-item h5 {
+  font-size: 16px;
+  background: rgba(20, 157, 221, 0.1);
+  padding: 5px 15px;
+  display: inline-block;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.resume .resume-item::before {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-radius: 50px;
+  left: -9px;
+  top: 0;
+  background: var(--text-light);
+  border: 2px solid var(--primary-color);
+}
+
+/* ============================================
+   PORTFOLIO SECTION
+   ============================================ */
+.portfolio-filters {
+  padding: 0;
+  margin: 0 auto 20px auto;
+  list-style: none;
+  text-align: center;
+}
+
+.portfolio-filters li {
+  cursor: pointer;
+  display: inline-block;
+  padding: 8px 20px 10px 20px;
+  margin: 0 5px 10px 5px;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--text-dark);
+  transition: var(--transition);
+  border-radius: 50px;
+}
+
+.portfolio-filters li:hover,
+.portfolio-filters li.filter-active {
+  color: var(--text-light);
+  background: var(--primary-color);
+}
+
+.portfolio-content {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.portfolio-content img {
+  transition: 0.3s;
+  width: 100%;
+  height: auto;
+}
+
+.portfolio-content:hover img {
+  transform: scale(1.1);
+}
+
+.portfolio-info {
+  opacity: 0;
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  transition: all 0.3s ease;
+  background: rgba(4, 11, 20, 0.9);
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.portfolio-content:hover .portfolio-info {
+  opacity: 1;
+}
+
+.portfolio-info h4 {
+  font-size: 20px;
+  color: var(--text-light);
+  font-weight: 600;
+}
+
+.portfolio-info p {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.portfolio-info a {
+  color: var(--text-light);
+  margin: 0 5px;
+  font-size: 24px;
+  display: inline-block;
+  transition: var(--transition);
+}
+
+.portfolio-info a:hover {
+  color: var(--primary-color);
+}
+
+/* ============================================
+   SERVICES SECTION
+   ============================================ */
+.service-item {
+  background: var(--text-light);
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  transition: var(--transition);
+}
+
+.service-item:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 30px rgba(20, 157, 221, 0.2);
+}
+
+.service-item .icon {
+  color: var(--primary-color);
+  font-size: 48px;
+  margin-bottom: 15px;
+}
+
+.service-item h4 {
+  font-weight: 700;
+  margin-bottom: 15px;
+  font-size: 20px;
+}
+
+.service-item p {
+  line-height: 24px;
+  font-size: 14px;
+  margin-bottom: 0;
+}
+
+/* ============================================
+   CONTACT SECTION
+   ============================================ */
+.info-item {
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.info-item i {
+  font-size: 32px;
+  color: var(--primary-color);
+  float: left;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50px;
+  transition: var(--transition);
+  border: 2px dotted rgba(20, 157, 221, 0.4);
+}
+
+.info-item h3 {
+  padding: 0 0 0 60px;
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 5px;
+  color: var(--heading-color);
+}
+
+.info-item p {
+  padding: 0 0 0 60px;
+  margin-bottom: 0;
+  font-size: 14px;
+  color: #6c757d;
+}
+
+.js-email-form .form-control {
+  border-radius: 4px;
+  padding: 10px 14px;
+  border: 1px solid #dee2e6;
+  transition: var(--transition);
+}
+
+.js-email-form .form-control:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 0.2rem rgba(20, 157, 221, 0.25);
+}
+
+.js-email-form button {
+  background: var(--primary-color);
+  border: 0;
+  padding: 10px 35px;
+  color: var(--text-light);
+  transition: var(--transition);
+  border-radius: 50px;
+  font-weight: 600;
+}
+
+.js-email-form button:hover {
+  background: #0d7ab8;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+@media (max-width: 1199px) {
+  #header {
+    left: -300px;
+  }
+  
+  .main {
+    margin-left: 0;
+  }
+  
+  .header-toggle {
+    display: block;
+  }
+  
+  #header.header-show {
+    left: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .section-title h2 {
+    font-size: 28px;
+  }
+  
+  #header {
+    width: 280px;
+  }
+  
+  .portfolio-info h4 {
+    font-size: 18px;
+  }
+}
+
+/* ============================================
+   LIGHT BACKGROUND SECTIONS
+   ============================================ */
+.light-background {
+  background-color: var(--light-bg);
+}
+
+/* ============================================
+   UTILITIES
+   ============================================ */
+.stretched-link::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  content: "";
+}

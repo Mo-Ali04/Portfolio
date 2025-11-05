@@ -1,0 +1,9 @@
+/* Header styles are inherited from main.css */
+
+.social-links .facebook:hover {
+  background-color: #0d37c2 !important;  /* Instagram pink */
+}
+
+.social-links .instagram:hover {
+  background-color: #E1306C !important; /* Instagram pink */
+}
