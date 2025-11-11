@@ -1,6 +1,20 @@
 import './About.css'
 
 const About = () => {
+  // Calculate age dynamically based on birthdate
+  const calculateAge = () => {
+    const birthDate = new Date('2002-07-08') // July 8, 2002
+    const today = new Date()
+    let age = today.getFullYear() - birthDate.getFullYear()
+    const monthDiff = today.getMonth() - birthDate.getMonth()
+    
+    // If birthday hasn't occurred this year yet, subtract 1
+    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+      age--
+    }
+    
+    return age
+  }
   return (
     <section id="about" className="about section">
       <div className="container section-title" data-aos="fade-up">
@@ -33,7 +47,7 @@ const About = () => {
               </div>
               <div className="col-lg-6">
                 <ul>
-                  <li><i className="bi bi-chevron-right"></i> <strong>Age:</strong> <span>22</span></li>
+                  <li><i className="bi bi-chevron-right"></i> <strong>Age:</strong> <span>{calculateAge()}</span></li>
                   <li><i className="bi bi-chevron-right"></i> <strong>Degree:</strong> <span>Bachelor</span></li>
                   <li><i className="bi bi-chevron-right"></i> <strong>Email:</strong> <span>mohammad.awad106@gmail.com</span></li>
                 </ul>

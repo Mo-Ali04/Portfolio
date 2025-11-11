@@ -1,19 +1,20 @@
 import { lazy, Suspense, useEffect } from 'react'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import AOS from 'aos'
 import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
 import ScrollTop from './components/ScrollTop/ScrollTop'
 import Preloader from './components/Preloader/Preloader'
-import './App.css'
 
 // Lazy load sections for better performance
 const Hero = lazy(() => import('./components/Hero/Hero'))
 const About = lazy(() => import('./components/About/About'))
 const Skills = lazy(() => import('./components/Skills/Skills'))
 const Resume = lazy(() => import('./components/Resume/Resume'))
-const Portfolio = lazy(() => import('./components/Portfolio/Portfolio'))
+const Projects = lazy(() => import('./components/Projects/Projects'))
 const Services = lazy(() => import('./components/Services/Services'))
 const Contact = lazy(() => import('./components/Contact/Contact'))
+const ProjectDetails = lazy(() => import('./components/ProjectDetails/ProjectDetails'))
 
 function App() {
   useEffect(() => {
@@ -105,26 +106,38 @@ function App() {
     }
   }, [])
 
-  return (
-    <div className="App">
-      <Preloader/>
-      <Header/>
-      
-      <main className="main">
-        <Suspense fallback={<div className="loading-section">Loading...</div>}>
-          <Hero/>
-          <About/>
-          <Skills/>
-          <Resume/>
-          <Portfolio/>
-          <Services/>
-          <Contact/>
-          <Footer/>
-        </Suspense>
-      </main>
+  // HomePage component with all sections
+  const HomePage = () => (
+    <>
+      <Hero/>
+      <About/>
+      <Skills/>
+      <Resume/>
+      <Projects/>
+      <Services/>
+      <Contact/>
+      <Footer/>
+    </>
+  )
 
-      <ScrollTop/>
-    </div>
+  return (
+    <Router>
+      <div className="App">
+        <Preloader/>
+        <Header/>
+        
+        <main className="main">
+          <Suspense fallback={<div className="loading-section">Loading...</div>}>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/project/:id" element={<ProjectDetails />} />
+            </Routes>
+          </Suspense>
+        </main>
+
+        <ScrollTop/>
+      </div>
+    </Router>
   )
 }
 

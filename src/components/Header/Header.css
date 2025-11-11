@@ -1,9 +1,128 @@
 /* Header styles are inherited from main.css */
 
 .social-links .facebook:hover {
-  background-color: #0d37c2 !important;  /* Instagram pink */
+  background-color: #0d37c2 !important;
 }
 
 .social-links .instagram:hover {
-  background-color: #E1306C !important; /* Instagram pink */
+  background-color: #E1306C !important;
+}
+
+/* Mobile Menu Toggle */
+.header-toggle {
+  position: fixed !important;
+  top: 15px;
+  right: 15px;
+  z-index: 9999;
+  width: 40px;
+  height: 40px;
+  display: none; /* Hidden by default, shown on mobile */
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  cursor: pointer;
+  background: var(--primary-color);
+  color: white;
+  border-radius: 50%;
+  transition: all 0.3s;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.header-toggle:hover {
+  background: #1090cc;
+  transform: scale(1.1);
+}
+
+/* Ensure toggle is above everything */
+.header-toggle.bi-x {
+  background: #dc3545; /* Red background when menu is open */
+}
+
+.header-toggle.bi-x:hover {
+  background: #c82333;
+}
+
+/* Show toggle button on mobile/tablet */
+@media (max-width: 1199px) {
+  .header-toggle {
+    display: flex !important;
+  }
+}
+
+/* Mobile Menu Styles */
+@media (max-width: 1199px) {
+  .header {
+    left: -300px !important;
+    transition: left 0.3s ease-in-out;
+    width: 300px;
+    z-index: 997;
+  }
+  
+  body.mobile-nav-active .header {
+    left: 0 !important;
+  }
+  
+  /* Darken background when menu is open */
+  body.mobile-nav-active::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 996;
+    animation: fadeIn 0.3s;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  /* Prevent scroll when menu is open */
+  body.mobile-nav-active {
+    overflow: hidden;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .header-toggle {
+    top: 10px;
+    right: 10px;
+    width: 36px;
+    height: 36px;
+    font-size: 20px;
+  }
+  
+  .header {
+    width: 280px;
+  }
+  
+  .profile-img img {
+    width: 90px;
+    height: 90px;
+  }
+  
+  .sitename {
+    font-size: 22px;
+  }
+  
+  .navmenu ul li a {
+    padding: 8px 15px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    width: 260px;
+  }
+  
+  .social-links a {
+    font-size: 16px;
+    width: 36px;
+    height: 36px;
+  }
 }

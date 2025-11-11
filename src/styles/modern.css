@@ -51,9 +51,11 @@ a:hover {
   overflow: hidden;
 }
 
+/* Main section title styles - applies to all sections */
 .section-title {
-  text-align: center;
+  text-align: center !important;
   padding-bottom: 40px;
+  display: block !important; /* Override any flex from other components */
 }
 
 .section-title h2 {
@@ -63,6 +65,8 @@ a:hover {
   margin-bottom: 20px;
   padding-bottom: 20px;
   position: relative;
+  display: block !important;
+  text-align: center !important;
 }
 
 .section-title h2::after {
@@ -80,6 +84,9 @@ a:hover {
 .section-title p {
   margin-bottom: 0;
   color: #6c757d;
+  display: block !important;
+  text-align: center !important;
+  margin: 0 auto;
 }
 
 /* ============================================
@@ -206,6 +213,8 @@ a:hover {
    ============================================ */
 .main {
   margin-left: 300px;
+  transition: margin 0.3s;
+  position: relative;
 }
 
 /* ============================================
@@ -249,7 +258,7 @@ a:hover {
   opacity: 0;
   right: 15px;
   bottom: 15px;
-  z-index: 99999;
+  z-index: 99996;
   background: var(--primary-color);
   width: 44px;
   height: 44px;
@@ -258,12 +267,16 @@ a:hover {
   display: flex;
   align-items: center;
   justify-content: center;
+  text-decoration: none;
   color: var(--text-light);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .scroll-top:hover {
   background: #0d7ab8;
   color: var(--text-light);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
 }
 
 .scroll-top.active {
@@ -274,6 +287,20 @@ a:hover {
 .scroll-top i {
   font-size: 24px;
   line-height: 0;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .scroll-top {
+    width: 40px;
+    height: 40px;
+    right: 10px;
+    bottom: 10px;
+  }
+  
+  .scroll-top i {
+    font-size: 20px;
+  }
 }
 
 /* ============================================
@@ -576,26 +603,81 @@ a:hover {
    RESPONSIVE DESIGN
    ============================================ */
 @media (max-width: 1199px) {
-  #header {
+  .header {
     left: -300px;
+    z-index: 997;
   }
   
   .main {
     margin-left: 0;
   }
   
-  .header-toggle {
-    display: block;
+  #footer {
+    margin-left: 0;
   }
   
-  #header.header-show {
+  /* Mobile navigation overlay */
+  body.mobile-nav-active::after {
+    content: '';
+    position: fixed;
+    top: 0;
     left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 996;
+    animation: fadeIn 0.3s;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
   }
 }
 
 @media (max-width: 768px) {
-  .section-title h2 {
-    font-size: 28px;
+  section {
+    padding: 60px 0;
+    overflow-x: hidden;
+  }
+  
+  .container {
+    padding: 0 15px;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+  
+  .row {
+    margin-left: -15px;
+    margin-right: -15px;
+  }
+  
+  [class*="col-"] {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  
+  h1 { 
+    font-size: 28px; 
+    word-wrap: break-word;
+  }
+  h2 { 
+    font-size: 24px; 
+    word-wrap: break-word;
+  }
+  h3 { 
+    font-size: 20px; 
+    word-wrap: break-word;
+  }
+  h4 { 
+    font-size: 18px; 
+    word-wrap: break-word;
+  }
+  
+  p {
+    font-size: 14px;
+    line-height: 1.6;
+    word-wrap: break-word;
   }
   
   #header {
@@ -604,7 +686,33 @@ a:hover {
   
   .portfolio-info h4 {
     font-size: 18px;
+    word-break: break-word;
   }
+  
+  /* Prevent horizontal overflow */
+  body {
+    overflow-x: hidden;
+  }
+  
+  .isotope-container {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  section {
+    padding: 40px 0;
+  }
+  
+  .container {
+    padding: 0 10px;
+  }
+  
+  h1 { font-size: 24px; }
+  h2 { font-size: 20px; }
+  h3 { font-size: 18px; }
+  h4 { font-size: 16px; }
 }
 
 /* ============================================

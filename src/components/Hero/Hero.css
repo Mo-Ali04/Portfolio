@@ -1,1 +1,31 @@
 /* Hero styles are inherited from main.css */
+
+/* Hero Background Optimization */
+#hero {
+  background-color: #040b14; /* Fallback color */
+}
+
+/* Desktop - Show full landscape image */
+@media (min-width: 1200px) {
+  #hero {
+    background-size: 100% auto !important;
+    background-position: center center !important;
+  }
+}
+
+/* Tablet - Balance between coverage and visibility */
+@media (min-width: 768px) and (max-width: 1199px) {
+  #hero {
+    background-size: cover !important;
+    background-position: center center !important;
+  }
+}
+
+/* Mobile - Ensure content is readable */
+@media (max-width: 767px) {
+  #hero {
+    background-size: cover !important;
+    background-position: center center !important;
+    background-attachment: scroll !important; /* Better performance on mobile */
+  }
+}

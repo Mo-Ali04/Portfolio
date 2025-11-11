@@ -164,9 +164,10 @@
    SECTION TITLE ENHANCEMENTS
    ============================================ */
 
+/* Override inline-block to ensure block display */
 .section-title h2 {
   position: relative;
-  display: inline-block;
+  display: block !important; /* Changed from inline-block */
 }
 
 .section-title h2::after {

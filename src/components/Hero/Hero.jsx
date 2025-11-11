@@ -27,8 +27,9 @@ const Hero = () => {
       className="position-relative d-flex align-items-center justify-content-center min-vh-100"
       style={{
         backgroundImage: 'url(/assets/img/hero-bg.jpg)',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
+        backgroundSize: '100% auto',
+        backgroundPosition: 'center center',
+        backgroundRepeat: 'no-repeat',
         backgroundAttachment: 'fixed'
       }}
     >

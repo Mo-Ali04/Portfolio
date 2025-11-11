@@ -1,6 +1,64 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import emailjs from '@emailjs/browser'
 import './Contact.css'
+
+// Map Loader Component for lazy loading
+const MapLoader = () => {
+  const [isMapLoaded, setIsMapLoaded] = useState(false)
+  const mapRef = useRef(null)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !isMapLoaded) {
+          setIsMapLoaded(true)
+        }
+      },
+      { threshold: 0.1 }
+    )
+
+    if (mapRef.current) {
+      observer.observe(mapRef.current)
+    }
+
+    return () => {
+      if (mapRef.current) {
+        observer.unobserve(mapRef.current)
+      }
+    }
+  }, [isMapLoaded])
+
+  return (
+    <div ref={mapRef} style={{ width: '100%', height: '270px', position: 'relative' }}>
+      {!isMapLoaded ? (
+        <div style={{
+          width: '100%',
+          height: '100%',
+          background: '#f0f0f0',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          borderRadius: '8px',
+          color: '#666'
+        }}>
+          <div style={{ textAlign: 'center' }}>
+            <i className="bi bi-geo-alt" style={{ fontSize: '2rem', color: '#149ddd' }}></i>
+            <p style={{ marginTop: '10px' }}>Loading map...</p>
+          </div>
+        </div>
+      ) : (
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d1728.046647016472!2d31.314363392172268!3d29.97674872561338!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2s!5e0!3m2!1sen!2sus!4v1744148885012!5m2!1sen!2sus" 
+          style={{ border: 0, width: '100%', height: '270px' }} 
+          allowFullScreen="" 
+          loading="lazy" 
+          referrerPolicy="no-referrer-when-downgrade"
+          title="Location Map"
+        ></iframe>
+      )}
+    </div>
+  )
+}
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -92,14 +150,7 @@ const Contact = () => {
                 </div>
               </div>
 
-              <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d1728.046647016472!2d31.314363392172268!3d29.97674872561338!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2s!5e0!3m2!1sen!2sus!4v1744148885012!5m2!1sen!2sus" 
-                style={{ border: 0, width: '100%', height: '270px' }} 
-                allowFullScreen="" 
-                loading="lazy" 
-                referrerPolicy="no-referrer-when-downgrade"
-                title="Location Map"
-              ></iframe>
+              <MapLoader />
             </div>
           </div>
 

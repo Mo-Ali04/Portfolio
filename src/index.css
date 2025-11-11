@@ -8,13 +8,34 @@
 /* Import GLightbox */
 @import 'glightbox/dist/css/glightbox.min.css';
 
-/* Import Swiper */
-@import 'swiper/css';
-@import 'swiper/css/pagination';
-@import 'swiper/css/navigation';
-
 /* Import modern clean styles (replaces main.css) */
 @import './styles/modern.css';
 
 /* Import enhanced animations and hover effects */
 @import './styles/enhancements.css';
+
+/* Loading fallback */
+.loading-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+  font-size: 1.2rem;
+  color: #666;
+  position: relative;
+}
+
+.loading-section::after {
+  content: '';
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(20, 157, 221, 0.3);
+  border-top-color: #149ddd;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-left: 15px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
